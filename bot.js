@@ -4,8 +4,7 @@ const client = new Discord.Client();
 
 var isPlaying = false;
 
-
-function greetingMessage(msg){
+async function greetingMessage(msg){
   if (msg.author.tag === "alca#3184") {
     msg.channel.send((`oi papai ${msg.author}!!!`).toString());
   } else {
@@ -14,7 +13,7 @@ function greetingMessage(msg){
 }
 
 
-async function urss(msg){
+async function urssManager(msg){
   console.log("Executing URSS.");
   var voiceChannel = msg.member.voiceChannel;
 
@@ -45,12 +44,25 @@ async function urss(msg){
 
 
 function help(msg){
-  msg.channel.send("Os comandos disponíveis até o momento são:\n- help: mostro quais minhas funções\n- oi: dou um oizinho pra vc :*\n- urss: toco o hino da união soviética pra dar aquela ajudada nas caixas");
+  var helpMessage = `Os comandos disponíveis até o momento são:
+  **$help**: mostro quais minhas funções
+  **$oi**: dou um oizinho pra vc :*
+  **$urss**: toco o hino da união soviética pra dar aquela inspirada
+  **$flw**: saio do canal de voz de quem me mandou embora`;
+  msg.channel.send(helpMessage);
 }
+
+
+function leaveVoiceChanel(msg){
+  var voiceChannel = msg.member.voiceChannel;
+  voiceChannel.leave();
+}
+
 
 client.on('ready', () => {
   console.log(`Logged in as ${client.user.tag}!`);
 });
+
 
 client.on('message', async msg => {
   var prefix = "$";
@@ -65,9 +77,12 @@ client.on('message', async msg => {
     } else if (command === 'oi') {
       greetingMessage(msg);
     } else if (command === 'urss') {
-      urss(msg);
+      urssManager(msg);
+    } else if (command === 'leave'){
+      leaveVoiceChanel(msg);
     }
   }
 });
+
 
 client.login('NTI5Nzk2ODk2MjM2MTA5ODUx.Dw2G5g.609Y8K15OLfjouSF9skaPp2M_pU');
