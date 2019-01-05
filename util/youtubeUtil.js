@@ -1,6 +1,6 @@
 const ytdl = require('ytdl-core');
 const request = require('superagent');
-const config = require("./config.json");
+const config = require("../config.json");
 var isPlaying = false;
 
 module.exports = {

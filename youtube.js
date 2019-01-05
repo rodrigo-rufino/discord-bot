@@ -1,5 +1,3 @@
-const API_KEY = "<my API Key>";
-
 var discord = require("discord.js");
 var ytdl = require('ytdl-core');
 var request = require('superagent');
